@@ -35,6 +35,8 @@ body {
     margin-bottom: 22px;
 }
 
+
+
 .app-header__btn {
     font-size: 16px;
     color: #000;
@@ -61,6 +63,7 @@ body {
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
+    margin-bottom: 45px;
 }
 
 .nav-app__inner {
@@ -76,4 +79,93 @@ body {
 .nav-app__title {
     color: #fff;
     font-size: 24px;
+}
+
+.app__wrapper {
+    background: linear-gradient(180deg, rgba(95, 93, 93, 0.45) 0%, rgba(95, 93, 93, 0) 100%);
+    border-radius: 44px;
+   
+    -webkit-border-radius: 44px;
+    -moz-border-radius: 44px;
+    -ms-border-radius: 44px;
+    -o-border-radius: 44px;
+    width: 560px;
+    height: 460px;
+    margin-bottom: 43px;
+}
+
+.app__list {
+    padding: 40px 25px 5px 22px;
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.task-app {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(91, 89, 89, 0.9);
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+}
+
+.task-app__text {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.task__btn {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+}
+.add-task {
+    display: flex;
+}
+
+.add-task__button {
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    background-color: #E7C30A;
+    box-shadow: 0px 0px 10px #FFDE33;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    padding: 16px 5px;
+    width: 185px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+
+    margin-right: 10px;
+
+}
+
+.add-task__button:hover {
+    background-color: #d3b10a;
+    box-shadow: 0px 0px 2px #FFDE33;
+}
+
+.add-task__input {
+    outline: none;
+    width: 100%;
+    padding: 10px 5px 10px 20px;
+    border: none;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    
+    background-color: rgba(161, 161, 161, 0.815);
+    color: #fff;
 }
