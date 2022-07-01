@@ -101,6 +101,8 @@ body {
     overflow: auto;
 }
 
+
+
 .task-app {
     display: flex;
     justify-content: space-between;
@@ -108,8 +110,15 @@ body {
     border-bottom: 1px solid rgba(91, 89, 89, 0.9);
     padding-bottom: 8px;
     margin-bottom: 24px;
+    position: relative;
 }
-
+.task-app__id {
+    position: absolute;
+    top: -5px;
+    font-size: 8px;
+    line-height: 1.5;
+    color: #b3b0b0ad;
+}
 .task-app__text {
     font-size: 18px;
     font-weight: 400;
@@ -121,6 +130,10 @@ body {
     border: none;
     margin: 0;
     cursor: pointer;
+}
+
+.task__btn svg {
+    pointer-events: none;
 }
 .add-task {
     display: flex;
@@ -168,4 +181,9 @@ body {
     
     background-color: rgba(161, 161, 161, 0.815);
     color: #fff;
+}
+
+.complite {
+    opacity: 0.5;
+    pointer-events: none;
 }

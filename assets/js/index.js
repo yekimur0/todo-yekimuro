@@ -1,15 +1,23 @@
 const btnAdd = document.querySelector('[data-task-add]')
 const taskList = document.querySelector('.app__list');
 const taskInput = document.querySelector('[data-task-input]')
+const clearBoardBtn = document.querySelector('#clear-btn');
 
 btnAdd.addEventListener('click', addTask) 
-btnAdd.addEventListener('click', clearInput) 
+taskList.addEventListener('click', deleteTask)
+taskList.addEventListener('click', checkTask)
+clearBoardBtn.addEventListener('click', clearBoard)
+
+
 
 function addTask () {
-    let inputTaskValue = taskInput.value
+    let inputTaskValue = taskInput.value;
+    let lenTaskList = taskList.children.length + 1;
+    let taskId = lenTaskList;
 
     const taskTemplate = `
             <li class="app__task task-app">
+            <span class="task-app__id">#${taskId}</span>
             <span class="task-app__text">${inputTaskValue}</span>
             <div class="task-app__buttons">
                 <button class="task__btn task__complite">
@@ -32,23 +40,28 @@ function addTask () {
         taskList.insertAdjacentHTML('beforeend', taskTemplate);
     }   
 
-
-}
-
-function clearInput () {
     taskInput.value = '';
     taskInput.focus();
+    savetoLS();
 }
 
-taskList.addEventListener('click', function (event) {
-    let target = event.target;
 
-    if(target.closest('.task__delete')) {
-        deleteTask();
+function deleteTask (event) {
+    if(event.target.closest('.task__delete')) {
+        const taskItem = event.target.closest('.task-app');
+        taskItem.remove();
     }
-})
-
-function deleteTask () {
-    const taskItem = document.querySelector('.task-app');
-    taskItem.remove(); 
 }
+
+function checkTask (event) {
+
+    if (event.target.closest('.task__complite')) {
+        let itemTask = event.target.closest('.task-app')
+            itemTask.classList.add('complite')
+    }
+}
+
+function clearBoard () {
+
+}
+
