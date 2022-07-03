@@ -1,13 +1,12 @@
 const btnAdd = document.querySelector('[data-task-add]')
 const taskList = document.querySelector('.app__list');
 const taskInput = document.querySelector('[data-task-input]')
-const clearBoardBtn = document.querySelector('#clear-btn');
 
 btnAdd.addEventListener('click', addTask) 
 taskList.addEventListener('click', deleteTask)
 taskList.addEventListener('click', checkTask)
-clearBoardBtn.addEventListener('click', clearBoard)
 
+let tasksArr = []
 
 
 function addTask () {
@@ -15,10 +14,22 @@ function addTask () {
     let lenTaskList = taskList.children.length + 1;
     let taskId = lenTaskList;
 
+    const taskData = {
+
+        id: Date.now(),
+        text: inputTaskValue,
+        done: false
+    }
+
+    tasksArr.push(taskData)
+
+
+    const cssClass = taskData.done ? 'app__task task-app  complite' : 'app__task task-app'
+    
     const taskTemplate = `
-            <li class="app__task task-app">
+            <li class="${cssClass}" id="${taskData.id}">
             <span class="task-app__id">#${taskId}</span>
-            <span class="task-app__text">${inputTaskValue}</span>
+            <span class="task-app__text">${taskData.text}</span>
             <div class="task-app__buttons">
                 <button class="task__btn task__complite">
                     <svg class="task__check" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,14 +53,20 @@ function addTask () {
 
     taskInput.value = '';
     taskInput.focus();
-    savetoLS();
+    
 }
 
 
 function deleteTask (event) {
     if(event.target.closest('.task__delete')) {
         const taskItem = event.target.closest('.task-app');
+
+        const id = +taskItem.id
+        const index = tasksArr.findIndex((item) => item.id === id)
+
+        tasksArr.splice(index, 1)
         taskItem.remove();
+
     }
 }
 
@@ -57,11 +74,17 @@ function checkTask (event) {
 
     if (event.target.closest('.task__complite')) {
         let itemTask = event.target.closest('.task-app')
+
+            const id = itemTask.id;
+            
+            const indexDone = tasksArr.findIndex(function (item) { 
+                if(item.id == id) {
+                    console.log(tasksArr[done])
+                }
+            })
+        
             itemTask.classList.add('complite')
     }
 }
 
-function clearBoard () {
-
-}
 
