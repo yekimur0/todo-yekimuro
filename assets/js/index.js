@@ -3,6 +3,50 @@ const taskList = document.querySelector('.app__list');
 const taskInput = document.querySelector('[data-task-input]');
 const clearBoardBtn = document.querySelector('.app-header__btn--clear')
 
+let secondElement = document.querySelector('#timer-sec')
+let minElement = document.querySelector('#timer-min')
+
+
+let min = 00,
+    sec = 00,
+    interval
+
+function intervalTimer () {
+    clearInterval(interval)
+    setInterval(startTimer, 1000);
+}    
+
+
+function startTimer () {
+    sec++
+    if (sec < 60) {
+        secondElement.innerText = "0" + sec;
+    }
+    if(sec > 9) {
+        secondElement.innerText = + sec;
+
+    }
+    if(sec == 60) {
+        minElement.innerText++
+        sec = 0;
+    }
+   
+}    
+
+function changenumber () {
+        intervalTimer();
+        startTimer();
+
+}
+
+
+
+
+
+
+
+
+
 btnAdd.addEventListener('click', addTask) 
 taskList.addEventListener('click', deleteTask)
 taskList.addEventListener('click', checkTask)
@@ -49,7 +93,7 @@ function addTask () {
 
     taskInput.value = '';
     taskInput.focus();
-    
+    changenumber();
     saveToLocalStorage();
 }
 
