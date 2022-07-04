@@ -185,5 +185,20 @@ body {
 
 .complite {
     opacity: 0.5;
-    pointer-events: none;
+}
+
+/* empty */
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.empty__title {
+    font-size: 24px;
+
+    color: #fff;
 }
