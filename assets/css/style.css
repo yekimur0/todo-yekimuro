@@ -112,13 +112,7 @@ body {
     margin-bottom: 24px;
     position: relative;
 }
-.task-app__id {
-    position: absolute;
-    top: -5px;
-    font-size: 8px;
-    line-height: 1.5;
-    color: #b3b0b0ad;
-}
+
 .task-app__text {
     font-size: 18px;
     font-weight: 400;

@@ -1,26 +1,27 @@
 const btnAdd = document.querySelector('[data-task-add]')
 const taskList = document.querySelector('.app__list');
-const taskInput = document.querySelector('[data-task-input]')
+const taskInput = document.querySelector('[data-task-input]');
+const clearBoardBtn = document.querySelector('.app-header__btn--clear')
 
 btnAdd.addEventListener('click', addTask) 
 taskList.addEventListener('click', deleteTask)
 taskList.addEventListener('click', checkTask)
+clearBoardBtn.addEventListener('click', clearTaskBoard);
 
 let tasksArr = [] // массив для хранения данных 
 
 if(localStorage.getItem('tasks')) {
+    // получаем элементы из localStorage
     tasksArr = JSON.parse(localStorage.getItem('tasks'));
+    // Рендарим элементы на страницу
     tasksArr.forEach( (item) => renderTaskHTML (item) );
 }
-
 
 
 checkEmpty();
 
 function addTask () {
     let inputTaskValue = taskInput.value;
-    let lenTaskList = taskList.children.length + 1;
-    let taskId = lenTaskList;
 
     // создали объект в которые поместили некоторые данные для задачи
     const taskData = {
@@ -30,25 +31,31 @@ function addTask () {
         done: false
     }
 
-    tasksArr.push(taskData) // пушим объект с задачами в массив
+   
     
 
 
     if(inputTaskValue == ''){
         taskInput.style.border = '1px solid red'
+        alert('Напишите что-нибудь в задачник :)');
     } else {
         taskInput.style.border = 'none'
+        tasksArr.push(taskData) // пушим объект с задачами в массив
+        checkEmpty();
         renderTaskHTML (taskData) 
     }   
 
+    
+
     taskInput.value = '';
     taskInput.focus();
-    checkEmpty();
+    
     saveToLocalStorage();
 }
 
 
 function deleteTask (event) {
+
     if(event.target.closest('.task__delete')) {
         const taskItem = event.target.closest('.task-app');
 
@@ -103,7 +110,6 @@ function renderTaskHTML (item) {
 
     const taskTemplate = `
     <li class="${cssClass}" id="${item.id}">
-    <span class="task-app__id">#1</span>
     <span class="task-app__text">${item.text}</span>
     <div class="task-app__buttons">
         <button class="task__btn task__complite">
@@ -120,3 +126,11 @@ function renderTaskHTML (item) {
  `
  taskList.insertAdjacentHTML('beforeend', taskTemplate);
 }
+
+function clearTaskBoard () {
+    taskList.innerHTML = '';
+    tasksArr.splice(tasksArr, tasksArr.length);
+    saveToLocalStorage();
+    checkEmpty();
+}
+
